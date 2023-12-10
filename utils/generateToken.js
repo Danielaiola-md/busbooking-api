@@ -6,8 +6,6 @@ const generateToken = (res, userId) => {
   });
 
   res.cookie("jwt", token, {
-    httpOnly: true,
-    secure: false, // Use secure cookies in production
     maxAge: 1 * 24 * 60 * 60 * 1000, // 1 days
   });
 };
