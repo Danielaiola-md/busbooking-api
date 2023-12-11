@@ -7,15 +7,15 @@ const asyncHandler = require('express-async-handler')
 
 router.route('/')
     .get(protectMiddleware.adminProtect,usersController.getAllUsers)
-    .post(usersController.createNewUser)
-    .patch(usersController.updateUser)
-    .delete(usersController.deleteUser)
+    .post(protectMiddleware.protect,usersController.createNewUser)
+    .patch(protectMiddleware.protect,usersController.updateUser)
+    .delete(protectMiddleware.protect,usersController.deleteUser)
    
 router.post('/auth', usersController.authUser)
     
 router.post('/logout', usersController.logoutUser)
 
-router.route("/profile").get( usersController.getUserProfile);
+router.route("/profile").get(protectMiddleware.protect, usersController.getUserProfile);
 
 router.post("/claim-bonus", async (req, res) => {
   try {
