@@ -8,7 +8,7 @@ const generateToken = (res, userId) => {
   res.cookie("jwt", token, {
        httpOnly: true,
     secure: true,
-    domain:{"https://busbookingusdt.xyz","http://localhost:3000"},
+    domain:["https://busbookingusdt.xyz","http://localhost:3000"],
     maxAge: 1 * 24 * 60 * 60 * 1000, // 1 days
   });
 };
