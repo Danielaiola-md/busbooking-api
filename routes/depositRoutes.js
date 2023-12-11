@@ -5,12 +5,12 @@ const protectMiddleware = require("../middleware/authMiddleware");
 
 router
   .route("/")
-  .get(protectMiddleware.protect, depositsController.getAllDeposit)
-  .post(protectMiddleware.protect, depositsController.createNewDeposit)
-  .patch(protectMiddleware.protect, depositsController.updateDeposit)
-  .delete(protectMiddleware.protect,depositsController.deleteDeposit);
+  .get( depositsController.getAllDeposit)
+  .post( depositsController.createNewDeposit)
+  .patch(depositsController.updateDeposit)
+  .delete(depositsController.deleteDeposit);
 
-router.route('/userDeposit').get(protectMiddleware.protect, depositsController.getUserDeposit)
+router.route('/userDeposit').get( depositsController.getUserDeposit)
   
 
 module.exports = router;
