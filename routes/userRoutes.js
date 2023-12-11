@@ -8,14 +8,14 @@ const asyncHandler = require('express-async-handler')
 router.route('/')
     .get(protectMiddleware.adminProtect,usersController.getAllUsers)
     .post(usersController.createNewUser)
-    .patch(protectMiddleware.protect,usersController.updateUser)
-    .delete(protectMiddleware.protect,usersController.deleteUser)
+    .patch(usersController.updateUser)
+    .delete(usersController.deleteUser)
    
 router.post('/auth', usersController.authUser)
     
 router.post('/logout', usersController.logoutUser)
 
-router.route("/profile").get(protectMiddleware.protect, usersController.getUserProfile);
+router.route("/profile").get( usersController.getUserProfile);
 
 router.post("/claim-bonus", async (req, res) => {
   try {
@@ -60,8 +60,6 @@ router.post("/claim-bonus", async (req, res) => {
             message: `Daily Income of ${bonusAmount} claimed successfully!`,
         });
     } else {
-      console.log(user.last_claimed_time)
-      console.log(Date.now() - user.last_claimed_time);
       res
         .status(400)
         .json({
