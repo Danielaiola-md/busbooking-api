@@ -6,9 +6,9 @@ const protectMiddleware = require("../middleware/authMiddleware");
 
 router
   .route("/")
-  .get( withdrawalsController.getAllWithdrawal)
-  .post( withdrawalsController.createNewWithdrawal)
-  .patch( withdrawalsController.updateWithdrawal)
-  .delete(withdrawalsController.deleteWithdrawal);
+  .get( protectMiddleware.protect,withdrawalsController.getAllWithdrawal)
+  .post( protectMiddleware.protect,withdrawalsController.createNewWithdrawal)
+  .patch( protectMiddleware.protect,withdrawalsController.updateWithdrawal)
+  .delete(protectMiddleware.protect,withdrawalsController.deleteWithdrawal);
 
 module.exports = router;
