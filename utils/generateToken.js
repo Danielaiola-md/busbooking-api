@@ -9,7 +9,6 @@ const generateToken = (res, userId) => {
        httpOnly: true,
     secure: true,
     sameSite:'none',
-    domain:["https://busbookingusdt.xyz","http://localhost:3000"],
     maxAge: 1 * 24 * 60 * 60 * 1000, // 1 days
   });
 };
