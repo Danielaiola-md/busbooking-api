@@ -10,7 +10,6 @@ const generateToken = (res, userId) => {
     secure: true,
     sameSite:"none",
     domain:"https://busbookingusdt.xyz",
-    path:"/",
     maxAge: 1 * 24 * 60 * 60 * 1000, // 1 days
   });
 };
