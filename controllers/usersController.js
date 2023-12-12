@@ -50,7 +50,7 @@ const createNewUser = asyncHandler(async (req, res) => {
     // Confirm data
     if (!username || !password || !email) {
         return res.status(400).json({ message: 'All fields are required' })
-    }
+    } 
 
     // Check for duplicate username
     const duplicate = await User.findOne({ email }).lean().exec()
@@ -58,8 +58,15 @@ const createNewUser = asyncHandler(async (req, res) => {
     if (duplicate) {
         return res.status(409).json({ message: 'Email already registered' })
     }
-       let generatedReferer;
-    if (referrallId) {
+  
+
+    // Hash password 
+    const hashedPwd = await bcrypt.hash(password, 10) // salt rounds
+    const generatedReferallId = UserId.rnd()
+
+      
+               let generatedReferer;
+            if (referrallId && username && password && email) {
 
         const referrerDetails = await User.findOne({ referrallId })
       
@@ -73,11 +80,7 @@ const createNewUser = asyncHandler(async (req, res) => {
     } else {
         generatedReferer = 'none'
     }
-
-    // Hash password 
-    const hashedPwd = await bcrypt.hash(password, 10) // salt rounds
-    const generatedReferallId = UserId.rnd()
-
+    
     const userObject = {
       username,
       email,
