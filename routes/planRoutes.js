@@ -6,9 +6,9 @@ const protectMiddleware = require("../middleware/authMiddleware");
 
 router
   .route("/")
-  .get(protectMiddleware.protect,plansController.getAllPlans)
-  .post(protectMiddleware.protect, plansController.createNewPlan)
-  .patch( protectMiddleware.protect,plansController.updatePlan)
-  .delete(protectMiddleware.protect,plansController.deletePlan);
+  .get(plansController.getAllPlans)
+  .post( plansController.createNewPlan)
+  .patch( plansController.updatePlan)
+  .delete(plansController.deletePlan);
 
 module.exports = router
