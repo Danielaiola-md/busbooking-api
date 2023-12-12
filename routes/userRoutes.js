@@ -15,7 +15,7 @@ router.post('/auth', usersController.authUser)
     
 router.post('/logout', usersController.logoutUser)
 
-router.route("/profile").get(usersController.getUserProfile);
+router.route("/profile").post(usersController.getUserProfile);
 
 router.post("/claim-bonus", async (req, res) => {
   try {
