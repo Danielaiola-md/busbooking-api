@@ -290,7 +290,9 @@ const logoutUser = asyncHandler(async (req, res) => {
     res.status(200).json({mesage: 'User logged out'})
 })
 const getUserProfile = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.body.id);
+
+       const { id } = req.body
+    const user = await User.findById(id);
 
   
         if (user) {
